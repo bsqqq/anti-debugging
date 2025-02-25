@@ -79,7 +79,7 @@ int main() {
    if(peb->BeingDebugged == 1) {
        exit(1);
    };
-}
+// }
 // initialize_debug_scan();
 
     char buffer[128];
