@@ -34,8 +34,8 @@ typedef struct _TEB {
   PVOID TlsExpansionSlots;
 } TEB, *PTEB;
 
-// __attribute__((constructor))
-// static void initialize_debug_scan() {
+__attribute__((constructor))
+static void initialize_debug_scan() {
 //        TEB* teb;
 
 //     __asm__ (
@@ -49,18 +49,18 @@ typedef struct _TEB {
 //     if(peb->BeingDebugged == 1) {
 //         exit(1);
 //     };
-  //  if(IsDebuggerPresent()) {
-  //      printf("IsDebuggerPresent true\n");
-  //      exit(1);
-  //  }
-// }
+   if(IsDebuggerPresent()) {
+       printf("IsDebuggerPresent true\n");
+       exit(1);
+   }
+}
 
 int main() {
     
-   if(IsDebuggerPresent()) {
-       printf("Debugger detectado!");
-      exit(1);
-   }
+  //  if(IsDebuggerPresent()) {
+  //      printf("Debugger detectado!");
+  //     exit(1);
+  //  }
 
 //  void initialize_debug_scan() {
 //       TEB* teb;
