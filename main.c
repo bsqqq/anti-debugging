@@ -36,19 +36,6 @@ typedef struct _TEB {
 
 __attribute__((constructor))
 static void initialize_debug_scan() {
-//        TEB* teb;
-
-//     __asm__ (
-//         "movl %%fs:0x18, %0;"   // Em sistemas de 32 bits, FS contém o offset do TEB na posição 0x18
-//         : "=r" (teb)             // O resultado vai para a variável teb
-//     );
-//     PEB* peb = (PEB*)teb->ProcessEnvironmentBlock;
-
-//     // Checando o campo BeingDebugged no PEB
-//     //printf("BeingDebugged: %d\n", peb->BeingDebugged);
-//     if(peb->BeingDebugged == 1) {
-//         exit(1);
-//     };
    if(IsDebuggerPresent()) {
        printf("IsDebuggerPresent true\n");
        exit(1);
@@ -56,28 +43,6 @@ static void initialize_debug_scan() {
 }
 
 int main() {
-    
-  //  if(IsDebuggerPresent()) {
-  //      printf("Debugger detectado!");
-  //     exit(1);
-  //  }
-
-//  void initialize_debug_scan() {
-//       TEB* teb;
-
-//    __asm__ (
-//        "movl %%fs:0x18, %0;"   // Em sistemas de 32 bits, FS contém o offset do TEB na posição 0x18
-//        : "=r" (teb)             // O resultado vai para a variável teb
-//    );
-//    PEB* peb = (PEB*)teb->ProcessEnvironmentBlock;
-
-//    // Checando o campo BeingDebugged no PEB
-//    printf("BeingDebugged: %d\n", peb->BeingDebugged);
-//    if(peb->BeingDebugged == 1) {
-//        exit(1);
-//    };
-// }
-// initialize_debug_scan();
 
     char buffer[128];
     FILE *fp;
