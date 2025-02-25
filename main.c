@@ -60,26 +60,26 @@ typedef struct _TEB {
 
 int main() {
     
-   if(IsDebuggerPresent()) {
-       printf("Debugger detectado!");
-      exit(1);
-   }
+  //  if(IsDebuggerPresent()) {
+  //      printf("Debugger detectado!");
+  //     exit(1);
+  //  }
 
 //  void initialize_debug_scan() {
-//       TEB* teb;
+      TEB* teb;
 
-//    __asm__ (
-//        "movl %%fs:0x18, %0;"   // Em sistemas de 32 bits, FS contém o offset do TEB na posição 0x18
-//        : "=r" (teb)             // O resultado vai para a variável teb
-//    );
-//    PEB* peb = (PEB*)teb->ProcessEnvironmentBlock;
+   __asm__ (
+       "movl %%fs:0x18, %0;"   // Em sistemas de 32 bits, FS contém o offset do TEB na posição 0x18
+       : "=r" (teb)             // O resultado vai para a variável teb
+   );
+   PEB* peb = (PEB*)teb->ProcessEnvironmentBlock;
 
-//    // Checando o campo BeingDebugged no PEB
-//    printf("BeingDebugged: %d\n", peb->BeingDebugged);
-//    if(peb->BeingDebugged == 1) {
-//        exit(1);
-//    };
-// }
+   // Checando o campo BeingDebugged no PEB
+   printf("BeingDebugged: %d\n", peb->BeingDebugged);
+   if(peb->BeingDebugged == 1) {
+       exit(1);
+   };
+}
 // initialize_debug_scan();
 
     char buffer[128];
