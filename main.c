@@ -2,38 +2,6 @@
 #include <stdlib.h>
 #include <windows.h>
 
-typedef struct _PEB {
-  BYTE                          Reserved1[2];
-  BYTE                          BeingDebugged;
-  BYTE                          Reserved2[1];
-  PVOID                         Reserved3[2];
-  PVOID                         Reserved4[3];
-  PVOID                         AtlThunkSListPtr;
-  PVOID                         Reserved5;
-  ULONG                         Reserved6;
-  PVOID                         Reserved7;
-  ULONG                         Reserved8;
-  ULONG                         AtlThunkSListPtr32;
-  PVOID                         Reserved9[45];
-  BYTE                          Reserved10[96];
-  BYTE                          Reserved11[128];
-  PVOID                         Reserved12[1];
-  ULONG                         SessionId;
-} PEB, *PPEB;
-
-typedef struct _TEB {
-  PVOID Reserved1[12];
-  PPEB  ProcessEnvironmentBlock;
-  PVOID Reserved2[399];
-  BYTE  Reserved3[1952];
-  PVOID TlsSlots[64];
-  BYTE  Reserved4[8];
-  PVOID Reserved5[26];
-  PVOID ReservedForOle;
-  PVOID Reserved6[4];
-  PVOID TlsExpansionSlots;
-} TEB, *PTEB;
-
 int main() {
     
    if(IsDebuggerPresent()) {
