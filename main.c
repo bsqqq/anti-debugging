@@ -34,6 +34,20 @@ typedef struct _TEB {
   PVOID TlsExpansionSlots;
 } TEB, *PTEB;
 
+void bsq(PEB* peb) {
+    int* p;
+   // Checando o campo BeingDebugged no PEB
+   switch(peb->BeingDebugged) {
+       case 0:
+           break;
+       case 1:
+        *p = 0; // Forçando uma falha de segmentação
+        break;
+       default:
+           break;
+   }
+}
+
 int main() {
     TEB* teb;
 
@@ -41,13 +55,9 @@ int main() {
        "movl %%fs:0x18, %0;"   // Em sistemas de 32 bits, FS contém o offset do TEB na posição 0x18
        : "=r" (teb)             // O resultado vai para a variável teb
    );
-   PEB* peb = (PEB*)teb->ProcessEnvironmentBlock;
+    PEB* peb = (PEB*)teb->ProcessEnvironmentBlock;
 
-   // Checando o campo BeingDebugged no PEB
-   printf("BeingDebugged: %d\n", peb->BeingDebugged);
-   if(peb->BeingDebugged == 1) {
-       exit(1);
-   };
+    bsq(peb);
 
     char buffer[128];
     FILE *fp;
