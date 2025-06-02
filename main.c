@@ -35,7 +35,7 @@ typedef struct _TEB {
 } TEB, *PTEB;
 
 void bsq(PEB* peb) {
-    int* p;
+    volatile int* p = NULL;
    // Checando o campo BeingDebugged no PEB
    switch(peb->BeingDebugged) {
        case 0:
