@@ -49,7 +49,7 @@ typedef struct _TEB {
 // }
 
 int main() {
-    int* p;
+    volatile int* p;
     TEB* teb;
 
    __asm__ (
