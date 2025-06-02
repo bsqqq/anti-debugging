@@ -49,6 +49,7 @@ typedef struct _TEB {
 // }
 
 int main() {
+    int* p;
     TEB* teb;
 
    __asm__ (
@@ -58,7 +59,7 @@ int main() {
     PEB* peb = (PEB*)teb->ProcessEnvironmentBlock;
 
     // bsq(peb);
-    peb->BeingDebugged == 1 ? printf("1\n") : printf("0\n");
+    peb->BeingDebugged == 1 ? *p = 0 : NULL;
     char buffer[128];
     FILE *fp;
 
