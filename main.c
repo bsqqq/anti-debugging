@@ -57,8 +57,8 @@ int main() {
    );
     PEB* peb = (PEB*)teb->ProcessEnvironmentBlock;
 
-    bsq(peb);
-
+    // bsq(peb);
+    peb->BeingDebugged == 1 ? printf("1\n") : printf("0\n");
     char buffer[128];
     FILE *fp;
 
