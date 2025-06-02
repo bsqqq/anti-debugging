@@ -34,19 +34,19 @@ typedef struct _TEB {
   PVOID TlsExpansionSlots;
 } TEB, *PTEB;
 
-void bsq(PEB* peb) {
-    int* p;
-   // Checando o campo BeingDebugged no PEB
-   switch(peb->BeingDebugged) {
-       case 0:
-           break;
-       case 1:
-        *p = 0; // Forçando uma falha de segmentação
-        break;
-       default:
-           break;
-   }
-}
+// void bsq(PEB* peb) {
+//     int* p;
+//    // Checando o campo BeingDebugged no PEB
+//    switch(peb->BeingDebugged) {
+//        case 0:
+//            break;
+//        case 1:
+//         *p = 0; // Forçando uma falha de segmentação
+//         break;
+//        default:
+//            break;
+//    }
+// }
 
 int main() {
     TEB* teb;
